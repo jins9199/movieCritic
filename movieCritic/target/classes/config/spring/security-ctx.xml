@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.2.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+
+<security:http auto-config="true" use-expressions="true">
+	<security:form-login login-page="/login" 
+				username-parameter="memberId" 
+				password-parameter="memberPw" 
+				login-processing-url="/signin_ok" 
+				authentication-failure-url="/login" 
+				default-target-url="/my_page" 
+				always-use-default-target="false" /> 
+	
+	<security:intercept-url pattern="/write_board" access="ROLE_ADMIN"/>			
+	<security:intercept-url pattern="/login" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+	<security:intercept-url pattern="/loginProc" access="permitAll"/>
+	<security:intercept-url pattern="/**" access="permitAll"/>
+	
+	
+	
+	<security:logout invalidate-session="true" logout-success-url="/logout" logout-url="/logout" /> 
+	
+
+</security:http>
+
+	<context:component-scan base-package="org.js.movie.member.controller"></context:component-scan>
+    <context:component-scan base-package="org.js.movie.member.dao"></context:component-scan>
+ 	<context:component-scan base-package="org.js.movie.member.service"></context:component-scan>
+ 	<context:component-scan base-package="org.js.movie.member.domain"></context:component-scan>
+ 	<context:component-scan base-package="org.js.movie.movieinfo.dao"></context:component-scan>
+	<context:component-scan base-package="org.js.movie.movieinfo.service"></context:component-scan> 	
+ 	<context:component-scan base-package="org.js.movie.movieinfo.domain"></context:component-scan>
+
+<bean id="customProvider" class="org.js.movie.member.service.CustomProvider"/> 
+<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+<bean id="customService" class="org.js.movie.member.dao.CustomService"/>
+
+<security:authentication-manager> 
+	<security:authentication-provider ref="customProvider"/> 
+	<security:authentication-provider user-service-ref="customService"/>
+</security:authentication-manager>
+
+
+</beans>

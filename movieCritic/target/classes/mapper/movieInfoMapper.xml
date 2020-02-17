@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="MovieInfoMapper">
+
+	<!-- index 포스터 페이지 목록 -->
+	<select id="poster_list" resultType="movieinfoVO">
+		select
+			movie_id, register_date
+		from table_movie_info
+		order by register_date desc
+		limit 4
+	</select>
+
+	<!-- index movie 목록 -->
+	<select id="list" resultType="movieinfoVO">
+ 		select
+ 			movie_id, title, register_date
+ 		from table_movie_info
+ 		order by movie_id desc
+ 		limit 7
+	</select>
+		
+	<!--  move info 페이지 뷰 -->
+	<select id="view" parameterType="int" resultType="movieinfoVO">
+		select
+			movie_id, title, summary, register_date
+		from
+			table_movie_info
+		where
+			movie_id = #{movieId}
+	
+	</select>
+	
+	<!--  movie info 작성 -->
+	<insert id="write" parameterType="movieinfoVO">
+		insert into
+			table_movie_info(title, summary, poster)
+				values(#{title}, #{summary}, #{poster})
+	</insert>
+	
+</mapper>

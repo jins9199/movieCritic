@@ -1,0 +1,8 @@
+CREATE TABLE member (
+	userID VARCHAR(30) not null,
+	userPW VARCHAR(30) not null,
+	userName VARCHAR(30) not null
+	
+	primary key(userID),
+	unique(userName)
+)

@@ -1,0 +1,314 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+
+<style>
+
+#site_layout{
+	margin: -8px;
+	padding : 0;
+}
+
+#top_menu_wrapper{
+	margin:0 auto;
+	
+}
+
+#top_menu{
+	margin:0;
+	width:100%;
+	height:60px;
+	display:flex;
+	justify-content:space-around;
+	align-items:center;
+	background:black;
+
+	
+}
+
+#left_menu{
+	list-style-type:none;
+	
+}
+
+.left_menu{
+	float:left;
+	padding: 0 0 15px 30px;
+	margin-left:auto;
+}
+
+#top_menu2{
+	display:flex;
+	
+}
+
+.right_menu{
+	margin-left:auto;
+	padding-left:15px;
+
+	
+}
+.top_text1{
+	font-size: 15px;
+	color: white;
+	text-decoration:none;
+	vertical-align:-8px;
+	
+}
+
+#sign_up{
+	background:#f30;
+	margin-bottom:3px;
+	
+}
+
+.top_text2{
+	font-size: 15px;
+	color: white;
+	vertical-align:-2px;
+	text-decoration:none;
+	padding-right:15px;
+	
+}
+
+#search{
+	border:none;
+	border-bottom: 3px solid white;
+	background: transparent;
+	height: 25px;
+}
+
+#genre_sub{
+	display:none;
+	height: 115px;
+	width:70px;
+	padding:0;
+	margin: 0px;
+	position: absolute;
+	z-index:2;
+	list-style-type:none;
+	text-decoration:none;
+	background-color: #fff;
+	border: 1px solid gray;
+	border-radius: 5px;
+}
+
+
+.left_menu:hover ul#genre_sub {
+	display:block;
+}
+
+.top_text3{
+	text-decoration:none;
+	color:#555;
+	font-size:15px;
+	vertical-align: 8px;
+}
+
+.left_inner_menu{
+	padding: 10px 0 0 5px ;
+}
+
+.left_inner_menu:hover {
+	background: lightblue;
+}
+
+#main_wrapper_area{
+	border:1px solid red;
+	width:43vw;
+	min-height:500px;
+	margin:40px auto;
+}
+
+
+#score_distribution{
+	list-style-type:none;
+	
+}
+
+.inner_header{
+	background:#eee;
+	color:black;
+	font-size:13px;
+}
+
+.review_area{
+	background:#eee;
+	border:1px solid purple;
+	margin-top:20px;
+}
+
+#review_menu_list{
+	list-style-type:none;
+	display:flex;
+	justify-content:flex-end;
+	align-items:center
+	border:1px solid blue;
+	margin-top:-30px;
+	font-size:14px;
+}
+
+.review_menu_item{
+	padding-right:8px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div id="site_layout">
+
+	<!--movieCri-->
+	<!-- 상단 메뉴-->
+
+   <div id="top_menu_wrapper">
+	<div id="top_menu">
+
+		<nav id="top_menu1">
+		<ul id="left_menu">
+		
+		<li class="left_menu">		
+		<a href=".do"><img src="/resources/image/logo.webp" alt="OpenCritic"></a>
+		</li>
+		<li class="left_menu">
+			<a href="#" class="top_text1">Genre</a>
+				
+				<ul id="genre_sub">			<!-- select 기준 적용된 페이지 호출.. -->
+					<li class="left_inner_menu"><a href="#" class="top_text3">Action</a></li>
+					<li class="left_inner_menu"><a href="#" class="top_text3">Comedy</a></li>
+					<li class="left_inner_menu"><a href="#" class="top_text3">Drama</a></li>
+				</ul>
+				
+		</li>
+		<li class="left_menu">
+			<a href="#" class="top_text1">Release Schedule</a>
+		</li>
+		</ul>
+		</nav>
+		<nav id="top_menu2">
+			
+			<div id="form" class="right_menu">
+	
+				<form action="#" method="post" class="right_menu">
+
+					<input type="text" placeholder="Search" class="top_text2" id="search">
+
+				</form>			
+			</div>
+			
+				<div id="login" class="right_menu">
+					<a href="${rootPath}/member/login.do" class="top_text2">Login</a>
+				</div>
+				<div id="sign_up" class="right_menu">
+					<a href="${rootPath}/member/sign_up.do" class="top_text2">Sign Up</a>
+				</div>
+			
+			
+			
+				<div class="right_menu">
+						<a href="${rootPath}/member/my_page.do">
+							<img src="/resources/image/toMyPage.png"
+							width="30px" height="30px">
+						</a>
+				</div>
+				<div id="logout" class="right_menu">
+						<a href="${rootPath}/member/logout.do" class="top_text2">Log Out</a>
+				</div>
+			<!-- 관리자 로그인 -->
+				
+					<div id="admin_write" class="right_menu">
+						<a href="${rootPath}/write_board.do" class="top_text2">Write</a>
+					</div>
+				
+			
+		</nav>
+
+	</div>
+   </div>
+	<!-- 상단 메뉴 끝-->
+
+
+
+<!-- 컨텐츠 시작-->
+
+<div id="main_wrapper_area">
+
+	<h2> 영화 제목 </h2>
+	<h4> 장르 | 개봉일 </h4>
+	
+	<!-- middle menu bar-->
+	<div>		
+			
+		<div>
+			<div style="float:left;">
+				<div style="float:left;"> 점수표시</div>
+				<h4 style="float:left;">User Score</h4>
+				<h5>based on ?Ratings</h5>					
+			</div>
+				
+			<div style="margin-left:300px;">
+				<div>User score distribution</div>
+				<ul id="score_distribution">
+					<li>Positive: </li>
+					<li>Mixed: </li>
+					<li>Negative: </li>
+				</ul>
+			</div>
+		</div>			
+		
+	</div>
+	<!-- middle menu end-->
+
+	<!-- 리뷰 입력 -->
+	<div class="review_area">
+		<div class="inner_header">
+			<h3> REVIEW THIS MOVIE</h3>
+		</div>
+
+		<div>
+			<form action="#" method="post">
+				<textarea cols="100" rows="5" maxlength="500"></textarea>
+				<input type="submit" value="submit"/>
+			</form>
+		</div>
+
+	</div>
+	<!-- 리뷰 입력 끝 -->
+
+	<!-- 유저 리뷰 목록-->
+	<div class="review_area">
+
+			<h4> USER REVIEWS</h4>
+			<ul id="review_menu_list">
+				<li class="review_menu_item">By score </li>
+				<li class="review_menu_item">By date </li>
+			</ul>
+		
+		
+			
+		
+
+		<!--jstl 사용 forEach-->
+		<div style="margin:10px; background:#fff; border:1px solid blue;">
+			<div style="border:1px solid red;margin-left:10px;float:left;">10점</div>
+			<div style="border: 1px solid green; max-width:780px;margin-left:7px;">
+				<div style="float:left;">User</div>   <div style="float:right;">Date</div>
+				<div style="margin-left:40px;">Content,,,,,,,,,,,,,,,,,,,,,,,,,,,gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg,</div>
+			</div>
+		</div>
+
+	</div>
+	<!-- 유저 리뷰 목록 끝-->
+
+</div>
+
+<!-- 컨텐츠 끝-->
+</div>
+<!-- 전체 레이아웃 끝-->
+</body>
+</html>
+
+
