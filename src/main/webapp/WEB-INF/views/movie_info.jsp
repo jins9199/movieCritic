@@ -662,7 +662,7 @@ var editMovie = function(){
 	var starringText = document.getElementById("starring");
 	modalDiv.style.display = "block";
 	siteDiv.style.backgroundColor= "rgba(0,0,0,0.5)";
-	summaryText.value = '${view.summary}';
+	summaryText.value = `${view.summary};`
 	starringText.value = '${view.starring}';
 }
 
