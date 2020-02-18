@@ -1,7 +1,7 @@
 function goIndex(){
 	location.href="/";
 };
-
+ 
 //SC = searchbox
 var SCBoxHide = function(){
     var searchResultsListDiv = document.getElementById("searchResultsListDiv");
