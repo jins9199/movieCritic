@@ -50,11 +50,14 @@ section[id^=board]{
 	border-bottom: 2px solid lightgray;
 }
 
+table{
+	border-spacing:20px;
+	border-collapse: separate
+}
 
 tr,td,th {
 
 	text-align:left;
-	padding-right:60px;
 }
 
 </style>
@@ -178,10 +181,10 @@ tr,td,th {
 					<tr>
 						<td>
 						</td>
-						<td>
+						<td colspan="2">
+						<div style="float:right; font-size:15px; cursor:pointer;" onclick="location.href='/movie_list?sortCondition=releaseDate'">>view more</div>
 						</td>
 						<td>
-						<div style="float:right; cursor:pointer;" onclick="location.href='/movie_list?sortCondition=releaseDate'">>view more</div>
 						</td>
 					</tr>	
   		 	</tbody>
@@ -212,7 +215,7 @@ tr,td,th {
 						<td>
 						</td>
 						<td>
-						<div style="float:right; cursor:pointer;" onclick="location.href='/movie_list?sortCondition=score&releaseDate=last90days'">>view more</div>
+						<div style="float:right; cursor:pointer; font-size:15px;"  onclick="location.href='/movie_list?sortCondition=score&releaseDate=last90days'">>view more</div>
 						</td>
 					</tr>	
   		 	</tbody>

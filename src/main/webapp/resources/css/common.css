@@ -1,4 +1,33 @@
 @charset "UTF-8";
+@media all and (max-width: 900px){
+	nav#top_menu1{
+		border:1px solid red;
+		margin-left:0 !important;
+		padding:0;
+		width:37%;
+	}
+	.left_menu{
+	margin:0;
+	padding:0;
+	}
+	li.left_menu{
+	width:50% !important;
+	}
+	
+	nav#top_menu1 img{
+		width:130px;
+		height:50px;
+	}
+	
+	nav#top_menu2{
+		margin-left:0 !important;
+		width:63%;
+	}
+	nav#top_menu2 div{
+		margin-left: 20px !important;
+		margin-right: 0 !important;
+	}
+}
 
 body{
 	margin:0;
