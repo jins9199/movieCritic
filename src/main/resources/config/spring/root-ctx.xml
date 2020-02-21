@@ -13,7 +13,7 @@
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 		
-
+	<context:component-scan base-package="org.js.movie"></context:component-scan>
 	<context:component-scan base-package="org.js.movie.member.controller"></context:component-scan>
     <context:component-scan base-package="org.js.movie.member.dao"></context:component-scan>
  	<context:component-scan base-package="org.js.movie.member.service"></context:component-scan>
@@ -21,11 +21,39 @@
  	<context:component-scan base-package="org.js.movie.movieinfo.dao"></context:component-scan>
 	<context:component-scan base-package="org.js.movie.movieinfo.service"></context:component-scan> 	
  	<context:component-scan base-package="org.js.movie.movieinfo.domain"></context:component-scan>
-		
-		
+	<context:component-scan base-package="org.springframework.social.facebook"/>
+
 	<import resource="db-ctx.xml"/>
 	<import resource="security-ctx.xml"/>
 	
+	<!-- application.properties 설정 -->
+	<context:property-placeholder location="classpath:/config/facebook.properties" />
 	
+	<bean id="connectionFactoryLocator" class="org.springframework.social.connect.support.ConnectionFactoryRegistry">
+		<property name="connectionFactories">
+			<bean class="org.springframework.social.facebook.connect.FacebookConnectionFactory">
+				<constructor-arg value="${spring.social.facebook.appId}" />
+				<constructor-arg value="${spring.social.facebook.appSecret}" />
+			</bean>
+		</property>
+	</bean>
+	<bean id="inMemoryConnectionRepository" class="org.springframework.social.connect.mem.InMemoryConnectionRepository">
+		<constructor-arg ref="connectionFactoryLocator" />
+	</bean>
+
+
+	
+<!-- 	    <bean id="connectionFactory"
+        class="org.springframework.social.facebook.connect.FacebookConnectionFactory">
+		<constructor-arg value="${spring.social.facebook.appId}" />
+		<constructor-arg value="${spring.social.facebook.appSecret}" />
+    </bean>
+ 
+    <bean id="oAuth2Parameters"
+        class="org.springframework.social.oauth2.OAuth2Parameters">
+        <property name="scope" value="email" />
+        <property name="redirectUri" value="https://localhost:8443" />
+    </bean>
+	 -->
 		
 </beans>

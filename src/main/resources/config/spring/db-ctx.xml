@@ -38,5 +38,6 @@
  	<context:component-scan base-package="org.js.movie.movieinfo.domain"></context:component-scan>
  	<context:component-scan base-package="org.js.movie.movieinfo.utils"></context:component-scan>
  	<context:component-scan base-package="org.js.movie.review"/>
+
 </beans>
 

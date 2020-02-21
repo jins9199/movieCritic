@@ -6,11 +6,13 @@ import java.util.List;
 import org.js.movie.member.domain.CustomMemberVO;
 import org.js.movie.member.domain.Role;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.social.facebook.api.User;
 import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
@@ -137,7 +139,23 @@ public class CustomService implements UserDetailsService {
 	}
 	
 	
-
-	 
+	public void onAuthenticationBinding(CustomMemberVO memberVO, User facebookUser) throws NullPointerException { 
+		memberVO.setMemberId(facebookUser.getId()); 
+		memberVO.setEmail(facebookUser.getEmail());  
+		memberVO.setNickname(facebookUser.getName());
+		Role fbRole = new Role ();
+		fbRole.setRole("ROLE_USER");
+		List<Role> listRole = new ArrayList<Role>();
+		listRole.add(fbRole);
+		
+		memberVO.setAuthorities(listRole); 
+		memberVO.setAccountNonExpired(true); 
+		memberVO.setAccountNonLocked(true); 
+		memberVO.setCredentialsNonExpired(true); 
+		memberVO.setEnabled(true); // Token 생성하고 로그인 세션 생성 
+		
+		UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken( memberVO, null, memberVO.getAuthorities() ); 
+		SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+	}
 
 }

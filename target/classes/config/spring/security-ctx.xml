@@ -36,7 +36,7 @@
 	<security:intercept-url pattern="/member/my_page" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')"/>			
 	<security:intercept-url pattern="/member/login" access="permitAll" />
 	<security:intercept-url pattern="/member/loginProc" access="permitAll"/>	<!-- 경로 잘못지정한 것 수정.. ${}값이 안나와서 확인해봄. -->
-	<security:intercept-url pattern="/**" access="permitAll"/>
+	<security:intercept-url pattern="/**" requires-channel="https" access="permitAll"/>
 	
 	<security:csrf disabled="false"/>
 	
